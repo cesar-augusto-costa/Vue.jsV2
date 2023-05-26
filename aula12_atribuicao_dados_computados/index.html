@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 12 - Atribuição em Dados Computados</title>
+</head>
+
+<body>   
+    <div id="app">
+        <p>
+            {{ firstName }}
+        </p>
+        <p>
+            {{ lastName }}
+        </p>
+        <p>
+            {{ fullName }}
+        </p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+               firstName: 'Cesar',
+               lastName: 'Costa',
+            },
+            computed: {
+                // fullName: function () {
+                //     return this.firstName + ' ' + this.lastName
+                // },
+                fullName: {
+                    get: function () {
+                        return this.firstName + ' ' + this.lastName 
+                    },
+                    set: function (val) {
+                        var fullName = val.split(' ');
+                        this.firstName = fullName.shift();
+                        this.lastName = fullName.pop();
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

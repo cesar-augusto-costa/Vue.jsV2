@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 15 - Renderização Condicional</title>
+</head>
+
+<body>   
+    <div id="app">
+        <p v-show="!isVisible">
+            v-show
+        </p>
+        <p v-if="isVisible">
+            Você me vê!
+        </p>
+        <p v-else>
+            Não me vê!
+        </p>
+        <hr>
+        <!-- v-else-if na V 2.1.0 ou + -->
+        <p v-if="number == 0">
+            Item 1
+        </p>
+        <p v-else-if="number == 1">
+            Item 2
+        </p>
+        <p v-else>
+            Item 3
+        </p>
+        <hr>
+        <!-- Template não aparece no front -->
+        <template v-if="isVisible">
+            <p>Item 1</p>
+            <p>Item 2</p>
+        </template>
+        <template v-else>
+            <p>Item 3</p>
+            <p>Item 4</p>
+        </template>
+        <hr>
+        <!-- key -->
+        <template v-if="tipoLogin == 'username'">
+            <label>Usuário</label>
+            <input type="text" placeholder="Informe o nome de usuário" key="username-input">
+        </template>
+        <template v-else>
+            <label>E-mail</label>
+            <input type="text" placeholder="Informe o endereço do e-mail" key="email-input">
+        </template>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+                isVisible: true,
+                number: 0,
+                tipoLogin: 'username',
+            },
+            mounted: function () {
+                $this = this;
+                setInterval (function () {
+                    $this.isVisible = !$this.isVisible;
+                    $this.number = ($this.number + 1) % 3;
+                    $this.tipoLogin = $this.tipoLogin == 'username' ? 'email' : 'username';
+                }, 3000);
+            }
+        });
+    </script>
+
+</body>
+</html>

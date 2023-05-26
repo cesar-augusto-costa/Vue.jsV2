@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 09 - Sintaxe de Templates Diretivas</title>
+</head>
+
+<body>   
+    <div id="app">
+        <p v-if="isVisible">
+            Mostrar?
+        </p>
+        <a :href="link.href" :title="link.text" target="_blank">
+            {{ link.text }}
+        </a>
+        <br>
+        <button @click="showMessage()">
+            Mensagem
+        </button>
+        <hr>
+        <p :[attr.type]="attr.content">
+            Testando diretiva dinâmica
+        </p>
+        <br>
+        <button @[event_button]="showDay">
+            Data
+        </button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+                isVisible: true,
+                link: {
+                    text: 'Google',
+                    href: 'https://google.com'
+                },
+                attr: {
+                    type: 'style',
+                    content: 'color: purple; font-size: 30px;'
+                },
+                // 'click', 'mouseover'
+                event_button: 'click',
+            },
+            methods: {
+                showMessage: function() {
+                    alert(Math.random().toString());
+                },
+                showDay: function() {
+                    alert(new Date().toLocaleDateString());
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

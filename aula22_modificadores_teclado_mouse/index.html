@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 22 - Modificadores de Teclado e Mouse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>   
+
+    <div id="app" class="container-fluid">
+
+        <div class="row m-5">
+            <div class="col">
+                <h1 class="text-center">
+                    Modificadores de Teclado e Mouse
+                </h1>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h2>Modificadores de Teclado</h2>
+                <input type="text" @keyup.page-down="testeEvento" class="form-control" placeholder=".page-down"><br>
+                <input type="text" @keyup.page-up="testeEvento" class="form-control" placeholder=".page-up"><br>
+                <input type="text" @keyup.home="testeEvento" class="form-control" placeholder=".home"><br>
+                <input type="text" @keyup.end="testeEvento" class="form-control" placeholder=".end"><br>
+                <input type="text" @keyup.home.end="testeEvento" class="form-control" placeholder="mix"><br>
+            </div>
+            <div class="col">
+                <h2>KeyCode</h2>
+                <input type="text" @keyup.enter="testeEvento" class="form-control" placeholder=".enter"><br>
+                <input type="text" @keyup.tab="testeEvento" class="form-control" placeholder=".tab"><br>
+                <input type="text" @keyup.tab.exact="testeEvento" class="form-control" placeholder=".tab.exact"><br>
+                <input type="text" @keyup.delete="testeEvento" class="form-control" placeholder=".delete (Delete e Backspace)"><br>
+                <input type="text" @keyup.esc="testeEvento" class="form-control" placeholder=".esc"><br>
+                <input type="text" @keyup.space="testeEvento" class="form-control" placeholder=".space"><br>
+                <input type="text" @keyup.up="testeEvento" class="form-control" placeholder=".up"><br>
+                <input type="text" @keyup.down="testeEvento" class="form-control" placeholder=".down"><br>
+                <input type="text" @keyup.left="testeEvento" class="form-control" placeholder=".left"><br>
+                <input type="text" @keyup.right="testeEvento" class="form-control" placeholder=".right"><br>
+                <input type="text" @keyup.f2="testeEvento" class="form-control" placeholder="Custom f2 exemplo"><br>
+            </div>
+
+            <div class="col">
+               <h2>Teclas Modificadoras de Sistema</h2>
+               <input type="text" @keyup.ctrl="testeEvento" class="form-control" placeholder=".ctrl"><br>
+               <input type="text" @keyup.alt="testeEvento" class="form-control" placeholder=".alt"><br>
+               <input type="text" @keyup.shift="testeEvento" class="form-control" placeholder=".shift"><br>
+               <input type="text" @keyup.meta="testeEvento" class="form-control" placeholder=".meta (tecla windows ou command mac)"><br>
+               <input type="text" @keyup.exact="testeEvento" class="form-control" placeholder=".exact"><br>
+            </div>
+            <div class="col">
+                <h2>Modificadores de Mouse</h2>
+                <button @click.left="testeEvento" class="btn btn-info">.left</button>
+                <button @click.prevent.right="testeEventso" class="btn btn-info">.right</button>
+                <button @click.middle="testeEvento" class="btn btn-info">.middle</button>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 10 - Dados Computados</title>
+</head>
+
+<body>   
+    <div id="app">
+        <p>
+            {{ reverse() }}
+        </p>
+        <p>
+            {{ getToday() }}
+        </p>
+        <p>
+            {{ fullname() }}
+        </p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+               text: 'Seja Bem-Vindo',
+               nome: 'Cesar',
+               sobrenome: 'Costa',
+            },
+            methods: {
+                reverse: function() {
+                    return this.text.split('').reverse().join('')
+                },
+                getToday: function() {
+                    return new Date().toLocaleDateString();
+                },
+                fullname: function() {
+                    return this.nome + ' ' + this.sobrenome;
+                }
+            },
+        });
+    </script>
+
+</body>
+</html>

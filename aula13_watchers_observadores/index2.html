@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 13 - Watchers (Observadores)</title>
+</head>
+
+<body>   
+    <div id="app">
+        <p>
+            Faça uma pergunta de sim ou não:
+        </p>
+        <p>
+            <input type="text" v-model="question">
+        </p>
+        {{ answer }}
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+                answer: '',
+                question: '',
+            },
+            watch: {
+                question: function (newValue, oldValue) {
+                    this.answer = 'Esperando resposta.'
+                    this.getAnswer();
+                }
+            },
+            methods: {
+                getAnswer: function () {
+                    if (this.question.indexOf('?') === -1) {
+                        this.answer = 'Digite perguntas com (?)';
+                        return;
+                    }
+                    this.answer = 'Pensando';
+
+                    var $this = this
+
+                    fetch('https://yesno.wtf/api')
+                        .then(function (response) {
+                            response.json().then(function (result){
+                                $this.answer = result.answer === 'yes' ? 'Sim' : 'Não'
+                            })
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            $this.answer = "Erro na API";
+                        })
+                }
+            },
+        });
+    </script>
+
+</body>
+</html>

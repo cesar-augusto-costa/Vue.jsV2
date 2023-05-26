@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 02 - Renderização Declarativa</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>
+            {{ message }}
+        </p>
+        <p v-bind:title="message" >
+            {{ nome }}
+        </p>
+    </div>
+
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Olá mundo!',
+                nome: 'Maria'
+            }
+        })
+    </script>
+
+</body>
+</html>

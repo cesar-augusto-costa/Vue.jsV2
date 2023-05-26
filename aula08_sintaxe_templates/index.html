@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 08 - Sintaxe de Templates</title>
+</head>
+
+<body>   
+    <div id="app">
+        <p>
+            Mensagem: {{ message }}
+        </p>
+        <p>
+            {{ message.split('').join(' ') }}
+        </p>
+        <p v-once>
+            Mensagem Inalterada: {{ message }}
+        </p>
+        {{ rawHtml }}
+        <div v-html="rawHtml"></div>
+        <p v-bind:title="'New: ' + message">
+            {{ message }}
+        </p>
+        <button v-bind:disabled="isDisabled">Botão</button>
+        <p>
+            {{ isDisabled ? 'Sim' : 'Não' }}
+        </p>
+        <p>
+            {{ new Date().toLocaleDateString() }}
+        </p>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Olá mundo!',
+                rawHtml: '<p style="color: purple">Raw Content</p>',
+                isDisabled: true,
+            }
+        })
+    </script>
+
+</body>
+</html>

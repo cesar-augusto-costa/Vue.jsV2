@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Aula 03 - Condicionais e Loops</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p v-if="visibleList">
+            Pode me ver!
+        </p>
+        <ul>
+            <li v-for="item in items" v-bind:key="item.id" :title="item.id">
+                {{item.nome}}
+            </li>
+        </ul>
+
+        <ol>
+            <li v-if="showOrNot()">Número 1</li>
+            <li v-if="showOrNot()">Número 2</li>
+            <li v-if="showOrNot()">Número 3</li>
+            <li v-if="showOrNot()">Número 4</li>
+            <li v-if="showOrNot()">Número 5</li>
+            <li v-if="showOrNot()">Número 6</li>
+            <li v-if="showOrNot()">Número 7</li>
+            <li v-if="showOrNot()">Número 8</li>
+            <li v-if="showOrNot()">Número 9</li>
+        </ol>
+    </div>
+
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <script>
+        app = new Vue({
+            el: '#app',
+            data: {
+                visibleList: true,
+                items: [
+                    {id: 1, nome: "Item 1"},
+                    {id: 2, nome: "Item 2"},
+                    {id: 3, nome: "Item 3"},
+                ]
+            },
+            methods: {
+                showOrNot: function() {
+                    return Math.random() >= 0.5;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
