@@ -15,6 +15,7 @@
         <h1 class="text-center">
             Componentes em Detalhes
         </h1>
+        <data-grid :data-source="dataSource"></data-grid>
     </div>
 
     <script type="text/x-template" id="DataGrid">
@@ -27,51 +28,30 @@
 
             <br>
 
-            <div class="row">
-                <div class="col">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead class="thead-dark">
-                            <tr class="text-center">
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Date</th>
-                                <th>Balance</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- <tr v-for="p in dataSource"> -->
-                            <tr v-for="(p, key) in dataSourceGrid">
-                                <td> {{ p.name | capitalize }} </td>
-                                <td> {{ p.email }} </td>
-                                <td> {{ p.phone | phoneMaskBr}} </td>
-                                <td> {{ p.date | dateBr }} </td>
-                                <td class="text-center"> {{ p.balance | moneyBr }} </td>
-                                <td class="text-center">
-                                    <button class="btn btn-danger" @click.prevent="removeItem($event, key)">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr class="text-center">
-                                <td colspan="6">
-                                    <!-- Total de Itens: {{ dataSource.length }} -->
-                                    <template v-if="filtroGrid.length > 0">
-                                        Total de Itens: {{ dataSourceGrid.length }} de {{ dataSource.length }}                                            
-                                    </template>
-                                    <template v-else>
-                                        Total de Itens: {{ dataSource.length }}
-                                    </template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
+            <table-grid
+            :filtroGrid='filtroGrid'
+            :dataSource='dataSouce'
+            :data-source-grid='dataSourceGrid'>
+            </table-grid>
+
+            
         </div>
+    </script>
+
+    <script type="text/x-template" id="table-foot">
+        <tfoot>
+            <tr class="text-center">
+                <td colspan="6">
+                    <!-- Total de Itens: {{ dataSource.length }} -->
+                    <template v-if="filtroGrid.length > 0">
+                        Total de Itens: {{ dataSourceGrid.length }} de {{ dataSource.length }}                 
+                    </template>
+                    <template v-else>
+                        Total de Itens: {{ dataSource.length }}
+                    </template>
+                </td>
+            </tr>
+        </tfoot>
     </script>
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
